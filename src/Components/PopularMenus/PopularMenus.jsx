@@ -7,15 +7,6 @@ const PopularMenus = () => {
     const popular = menu?.filter(item => item.category === 'popular')
     console.log(popular);
 
-    // useEffect(() => {
-    //     fetch('menu.json')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             const popularItems = data?.filter(item => item.category === "popular");
-    //             setMenu(popularItems)
-    //         })
-    // }, [])
-
     return (
         <section className='my-12'>
             <SectionTitle subHeading='---Check it out---' heading='FROM OUR MENU' />
