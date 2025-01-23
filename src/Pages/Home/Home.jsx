@@ -3,6 +3,8 @@ import Banner from '../../Components/Banner/Banner';
 import FoodCategorys from '../../Components/FoodCategorys/FoodCategorys';
 import PopularMenus from '../../Components/PopularMenus/PopularMenus';
 import Featured from '../../Components/Featured/Featured';
+import Testimonials from '../../Components/Testimonials/Testimonials';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -10,10 +12,14 @@ import Featured from '../../Components/Featured/Featured';
 const Home = () => {
     return (
         <div>
-           <Banner></Banner>
-           <FoodCategorys></FoodCategorys>
-           <PopularMenus></PopularMenus>
-           <Featured></Featured>
+            <Helmet>
+                <title>Mom Kitchen | Home</title>
+            </Helmet>
+            <Banner></Banner>
+            <FoodCategorys></FoodCategorys>
+            <PopularMenus></PopularMenus>
+            <Featured></Featured>
+            <Testimonials></Testimonials>
         </div>
     );
 };
