@@ -31,7 +31,7 @@ const Menu = () => {
 
             <MenuCategory
                 items={deserts}
-            title="Desserts"
+            title="dessert"
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             categoryImg ={dessertImg}
             />
@@ -39,7 +39,7 @@ const Menu = () => {
 
             <MenuCategory
                 items={pizzas}
-            title="pizzas"
+            title="pizza"
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             categoryImg ={pizzaImg}
             />
@@ -47,14 +47,14 @@ const Menu = () => {
 
             <MenuCategory
                 items={salads}
-            title="salads"
+            title="salad"
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             categoryImg ={saladImg}
             />
 
             <MenuCategory
                 items={soups}
-            title="soups"
+            title="soup"
             details="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             categoryImg ={soupImg}
             />
