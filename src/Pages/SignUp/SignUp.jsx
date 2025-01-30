@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 
 
 export default function SignUp() {
-    const { signUpUser } = useContext(AuthContext)
+    const { signUpUser, updateUserProfile } = useContext(AuthContext)
 
     const {
         register,
@@ -16,10 +16,11 @@ export default function SignUp() {
     } = useForm()
 
     const onSubmit = (data) => {
-        const { email, password } = data
-        signUpUser({email, password})
+        // const { email, password, name, photo } = data
+        signUpUser(data.email, data.password)
             .then(result => {
                 console.log(result);
+                updateUserProfile(data.name, data.photo)
             })
     }
 
@@ -36,6 +37,26 @@ export default function SignUp() {
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="w-1/2 flex flex-col space-y-4">
                     <h3 className='text-4xl text-center font-bold text-black'>Sign In</h3>
+                    <div>
+                        <label className='block text-xl font-semibold mb-2 text-black' htmlFor="">Name</label>
+                        <input
+                            className="bg-white w-full py-3 border-2 rounded-md pl-4"
+                            {...register("name", { required: "Name is required" })}
+                            type="name"
+                            id="name"
+                        />
+                        {errors.name && <span>Email is required</span>}
+                    </div>
+                    <div>
+                        <label className='block text-xl font-semibold mb-2 text-black' htmlFor="">PhotoURL</label>
+                        <input
+                            className="bg-white w-full py-3 border-2 rounded-md pl-4"
+                            {...register("photo", { required: "PhotoUrl is required" })}
+                            type="photo"
+                            id="photo"
+                        />
+                        {errors.photo && <span>Email is required</span>}
+                    </div>
                     <div>
                         <label className='block text-xl font-semibold mb-2 text-black' htmlFor="">Email</label>
                         <input

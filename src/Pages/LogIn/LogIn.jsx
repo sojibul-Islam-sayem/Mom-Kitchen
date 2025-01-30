@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import img from "../../assets/others/authentication2.png"
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from "react-hook-form"
@@ -10,6 +10,10 @@ import 'animate.css';
 const LogIn = () => {
     const [disable, setDisable] = useState(true)
     const { signInUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/';
 
     const {
         register,
@@ -40,6 +44,7 @@ const LogIn = () => {
                       `
                     }
                 });
+                navigate(from, { replace: true });
             })
     }
 

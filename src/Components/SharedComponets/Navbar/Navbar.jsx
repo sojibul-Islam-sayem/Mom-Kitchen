@@ -14,6 +14,7 @@ const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="menu">Menu</Link></li>
         <li><Link to="order/salad">Order</Link></li>
+        <li>{user?.displayName}</li>
         {
             !user ? <li><Link to="login">LogIn</Link></li> : <li><Link onClick={handleLogOut}>Logout</Link></li>
         }
@@ -51,7 +52,11 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <div className="avatar online">
+                    <div className="w-24 rounded-full">
+                        <img src={user?.photoURL} />
+                    </div>
+                </div>
             </div>
         </div>
     );
