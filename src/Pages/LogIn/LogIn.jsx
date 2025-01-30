@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import img from "../../assets/others/authentication2.png"
 import { Link } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
@@ -8,7 +8,6 @@ import Swal from 'sweetalert2'
 import 'animate.css';
 
 const LogIn = () => {
-    const captchaRef = useRef(null);
     const [disable, setDisable] = useState(true)
     const { signInUser } = useContext(AuthContext)
 
@@ -50,8 +49,8 @@ const LogIn = () => {
         loadCaptchaEnginge(6);
     }, [])
 
-    const validCaptcha = () => {
-        const value = captchaRef.current.value;
+    const validCaptcha = (e) => {
+        const value = e.target.value;
         if (validateCaptcha(value)) {
             setDisable(false)
         }
@@ -77,7 +76,7 @@ const LogIn = () => {
                     </div>
                     <div>
                         <label className='block text-xl font-semibold mb-2 text-black' htmlFor=""><LoadCanvasTemplate /></label>
-                        <input ref={captchaRef} onBlur={validCaptcha} className='bg-white w-full py-3 border-2 rounded-md pl-4' placeholder='Enter the Captcha' type="captcha" name="captcha" id="" />
+                        <input onBlur={validCaptcha} className='bg-white w-full py-3 border-2 rounded-md pl-4' placeholder='Enter the Captcha' type="captcha" name="captcha" id="" />
                     </div>
                     <input disabled={disable} className={`btn bg-[#D1A054] border-0 w-full font-bold rounded-md text-center  text-xl text-white`} type="submit" value="Sign In" />
                     <p className='text-center text-xl text-[#D1A054]'>New here? <Link to='/signup' className='font-bold'>Create a New Account</Link></p>
