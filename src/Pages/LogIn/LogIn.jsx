@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from "react-hook-form"
+import Swal from 'sweetalert2'
+import 'animate.css';
 
 const LogIn = () => {
     const captchaRef = useRef(null);
@@ -13,7 +15,6 @@ const LogIn = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
     const onSubmit = (data) => {
@@ -21,6 +22,25 @@ const LogIn = () => {
         signInUser({ email, password })
             .then(result => {
                 console.log(result.user);
+                Swal.fire({
+                    icon: 'success',
+                    title: "Sign in Successfully",
+                    confirmButtonText: 'Okey',
+                    showClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                });
             })
     }
 
@@ -57,7 +77,7 @@ const LogIn = () => {
                     </div>
                     <div>
                         <label className='block text-xl font-semibold mb-2 text-black' htmlFor=""><LoadCanvasTemplate /></label>
-                        <input ref={captchaRef} onBlur={validCaptcha}  className='bg-white w-full py-3 border-2 rounded-md pl-4' placeholder='Enter the Captcha' type="captcha" name="captcha" id="" />
+                        <input ref={captchaRef} onBlur={validCaptcha} className='bg-white w-full py-3 border-2 rounded-md pl-4' placeholder='Enter the Captcha' type="captcha" name="captcha" id="" />
                     </div>
                     <input disabled={disable} className={`btn bg-[#D1A054] border-0 w-full font-bold rounded-md text-center  text-xl text-white`} type="submit" value="Sign In" />
                     <p className='text-center text-xl text-[#D1A054]'>New here? <Link to='/signup' className='font-bold'>Create a New Account</Link></p>
