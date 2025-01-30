@@ -1,11 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import img from "../../assets/others/authentication2.png"
 import { Link } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const LogIn = () => {
     const captchaRef = useRef(null);
     const [disable, setDisable] = useState(true)
+
+    const {signInUser} = useContext(AuthContext)
+
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -17,6 +21,10 @@ const LogIn = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        signInUser(email, password)
+            .then(result => {
+                console.log(result.user);                
+             })
     }
 
     const validCaptcha = () => {
@@ -49,7 +57,7 @@ const LogIn = () => {
                         <input ref={captchaRef} onBlur={validCaptcha} className='bg-white w-full py-3 border-2 rounded-md pl-4' placeholder='Enter the Captcha' type="captcha" name="captcha" id="" />
                     </div>
                     <input disabled={disable} className={`btn bg-[#D1A054] border-0 w-full font-bold rounded-md text-center  text-xl text-white`} type="submit" value="Sign In" />
-                    <p className='text-center text-xl text-[#D1A054]'>New here? <Link className='font-bold'>Create a New Account</Link></p>
+                    <p className='text-center text-xl text-[#D1A054]'>New here? <Link to='/signup' className='font-bold'>Create a New Account</Link></p>
                     <p className='text-center text-[#444444] text-xl'>Or sign in with</p>
                 </form>
             </div>
