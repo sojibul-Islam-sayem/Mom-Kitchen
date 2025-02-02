@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { key } from 'localforage';
 import axios from 'axios';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useCart from '../../../Hooks/useCart';
 
 const FoodCard = ({ item }) => {
     const { name, recipe, price, image, _id } = item;
@@ -12,8 +13,9 @@ const FoodCard = ({ item }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxiosSecure();
+    const [,refetch] = useCart();
 
-    const handleCart = food => {
+    const handleCart = () => {
         if (user && user.email) {
             const cartItem = {
                 menuId: _id,
@@ -31,7 +33,8 @@ const FoodCard = ({ item }) => {
                         title: `${name} Added in cart`,
                         showConfirmButton: false,
                         timer: 1500
-                      });
+                    });
+                    refetch()
                 })
         }
         else {
@@ -64,7 +67,7 @@ const FoodCard = ({ item }) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <button
-                    onClick={() => handleCart(item)}
+                    onClick={handleCart}
                     className='uppercase  text-[#BB8506] font-medium px-7 py-4 rounded-xl hover:bg-slate-700 border-b-4 border-[#BB8506] '>ADD to cart</button>
             </div>
         </div>
