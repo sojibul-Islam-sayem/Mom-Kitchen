@@ -22,7 +22,7 @@ const LogIn = () => {
     } = useForm()
     const onSubmit = (data) => {
         const { email, password } = data
-        signInUser({ email, password })
+        signInUser(email, password)
             .then(result => {
                 console.log(result.user);
                 Swal.fire({
