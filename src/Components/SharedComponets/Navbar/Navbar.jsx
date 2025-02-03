@@ -17,10 +17,12 @@ const Navbar = () => {
         <li><Link to="menu">Menu</Link></li>
         <li><Link to="order/salad">Order</Link></li>
         <li>
-            <button className="">
-                <FaCartPlus />
-                <div className="badge bg-red-500 text-white">+{cart.length}</div>
-            </button>
+            <Link to='/dashboard/cart'>
+                <button className="">
+                    <FaCartPlus />
+                    <div className="badge bg-red-500 text-white">+{cart.length}</div>
+                </button>
+            </Link>
         </li>
         {
             !user ? <li><Link to="login">LogIn</Link></li> : <li><Link onClick={handleLogOut}>Logout</Link></li>
